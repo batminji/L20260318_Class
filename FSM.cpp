@@ -1,6 +1,7 @@
 #include "FSM.h"
 #include "State.h"
 #include "Transition.h"
+#include <iostream>
 
 UFSM::UFSM()
 {
@@ -47,4 +48,28 @@ UFSM::~UFSM()
 
 void UFSM::Process(int CurrentState, std::string CurrentCondition)
 {
+	for (int i = 0; i < 5; ++i)
+	{
+		if (Transitions[i].CurrentState == CurrentState &&
+			Transitions[i].Condition == CurrentCondition)
+		{
+			std::cout << GetStateName(Transitions[i].NextState) << std::endl;
+
+			return;
+		}
+	}
+	std::cout << GetStateName(CurrentState) << std::endl;
+}
+
+std::string UFSM::GetStateName(int InID)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		if (States[i].ID == InID)
+		{
+			return States[i].StateName;
+		}
+	}
+
+	return "상태없음";
 }

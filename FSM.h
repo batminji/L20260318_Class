@@ -3,6 +3,8 @@
 class UState;
 class UTransition;
 
+#include <iostream>
+
 class UFSM
 {
 public:
@@ -13,5 +15,7 @@ public:
 	UTransition* Transitions;
 
 	void Process(int CurrentState, std::string CurrentCondition);
+
+	std::string GetStateName(int InID);
 };
 
